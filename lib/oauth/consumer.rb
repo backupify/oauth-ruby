@@ -148,7 +148,7 @@ module OAuth
     #   @consumer.request(:get,  '/people', @token, { :scheme => :query_string })
     #   @consumer.request(:post, '/people', @token, {}, @person.to_xml, { 'Content-Type' => 'application/xml' })
     #
-    def request(http_method, path, token = nil, request_options = {}, *arguments)
+    def request(http_method, path, token = nil, request_options = {}, *arguments, &block)
       if path !~ /^\//
         @http = create_http(path)
         _uri = URI.parse(path)
@@ -156,8 +156,17 @@ module OAuth
       end
 
       # override the request with your own, this is useful for file uploads which Net::HTTP does not do
-      req = create_signed_request(http_method, path, token, request_options, *arguments)
-      return nil if block_given? and yield(req) == :done
+      req = create_signed_request(http_method, path, token, request_options, *arguments, &block)
+
+      if block_given?
+        if http_method == :get
+          http.request(req, &block)
+          return nil
+        else
+          return nil if yield(req) == :done
+        end
+      end
+
       rsp = http.request(req)
       # check for an error reported by the Problem Reporting extension
       # (http://wiki.oauth.net/ProblemReporting)
