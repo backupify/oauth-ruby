@@ -11,7 +11,10 @@ GEM
     em-http-request (0.2.11)
       addressable (>= 2.0.0)
       eventmachine (>= 0.12.9)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
     eventmachine (0.12.10)
+    ffi (1.17.1)
     gemcutter (0.4.1)
       json_pure
     git (1.2.5)
@@ -22,12 +25,12 @@ GEM
     json_pure (1.4.3)
     mocha (0.9.8)
       rake
-    rack (1.1.0)
+    rack (1.1.6)
     rake (0.8.7)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
-    typhoeus (0.1.31)
-      rack
+    typhoeus (1.4.1)
+      ethon (>= 0.9.0)
     webmock (1.3.5)
       addressable (>= 2.1.1)
       crack (>= 0.1.7)
@@ -42,5 +45,8 @@ DEPENDENCIES
   jeweler
   mocha (>= 0.9.8)
   rake
-  typhoeus (>= 0.1.13)
+  typhoeus (>= 0.2.0)
   webmock
+
+BUNDLED WITH
+   2.1.4
