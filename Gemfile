@@ -26,7 +26,7 @@ group :test do
   gem 'typhoeus', '~> 0.7.0'  # Compatible with Ruby 2.2
   gem 'em-http-request', '0.2.11'
   gem 'curb', '0.9.3'  # Last version known to work with Ruby 1.9.3
-  gem 'webmock', '1.3.5'
+  gem 'webmock', '1.6.4'
   gem 'addressable', '2.2.6'
   gem 'crack', '0.1.8'
 end
