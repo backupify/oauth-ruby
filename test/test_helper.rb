@@ -5,7 +5,10 @@ $LOAD_PATH << File.dirname(__FILE__) + '/../lib/'
 require 'oauth'
 require 'mocha'
 require 'stringio'
-require 'webmock/test_unit'
+require 'webmock'
+
+include WebMock
+WebMock.disable_net_connect!
 
 class Test::Unit::TestCase
   def assert_matching_headers(expected, actual)
